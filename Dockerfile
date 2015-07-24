@@ -4,7 +4,7 @@ RUN locale-gen en_US en_US.UTF-8
 
 RUN apt-get update
 RUN apt-get -qqy --force-yes dist-upgrade
-RUN apt-get install -qqy --force-yes wget default-jre-headless
+RUN apt-get install -qqy --force-yes tail wget default-jre-headless
 
 RUN wget http://madsonic.org/download/6.0/20150724_madsonic-6.0.6870.deb
 RUN dpkg -i 20150724_madsonic-6.0.6870.deb
