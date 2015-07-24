@@ -9,6 +9,13 @@ RUN apt-get install -qqy --force-yes tail wget default-jre-headless
 RUN wget http://madsonic.org/download/6.0/20150724_madsonic-6.0.6870.deb
 RUN dpkg -i 20150724_madsonic-6.0.6870.deb
 
+# Create hardlinks to the transcoding binaries.
+# This way we can mount a volume over /var/madsonic.
+# <host-dir>/var/madsonic/transcode/ffmpeg -> /usr/local/bin/ffmpeg
+# <host-dir>/var/madsonic/transcode/lame -> /usr/local/bin/lame
+RUN ln /var/madsonic/transcode/ffmpeg /var/madsonic/transcode/lame /usr/local/bin
+
+VOLUME /var/madsonic
 VOLUME /config
 VOLUME /media
 
@@ -19,4 +26,3 @@ ADD ./start.sh /start.sh
 RUN chmod u+x  /start.sh
 
 ENTRYPOINT ["/start.sh"]
-
