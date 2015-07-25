@@ -6,8 +6,8 @@ RUN apt-get update
 RUN apt-get -qqy --force-yes dist-upgrade
 RUN apt-get install -qqy --force-yes wget default-jre-headless
 
-RUN wget http://madsonic.org/download/6.0/20150724_madsonic-6.0.6870.deb
-RUN dpkg -i 20150724_madsonic-6.0.6870.deb
+RUN wget http://madsonic.org/download/6.0/20150725_madsonic-6.0.6880.deb
+RUN dpkg -i 20150725_madsonic-6.0.6880.deb
 
 # Create hardlinks to the transcoding binaries.
 # This way we can mount a volume over /var/madsonic.
