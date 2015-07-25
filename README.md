@@ -1,5 +1,5 @@
-Madsonic Ubuntu Dockerimage 
-===========================
+Madsonic Ubuntu docker image 
+============================
 
 Madsonic http://www.madsonic.org
 
