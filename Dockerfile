@@ -20,8 +20,8 @@ RUN apt-get update && apt-get install -y \
   unzip \
   wget
 
-RUN wget http://madsonic.org/download/6.0/20150725_madsonic-6.0.6890.deb
-RUN dpkg -i 20150725_madsonic-6.0.6890.deb
+RUN wget http://madsonic.org/download/6.0/20150827_madsonic-6.0.7120.deb
+RUN dpkg -i 20150827_madsonic-6.0.7120.deb
 
 # Create hardlinks to the transcoding binaries.
 # This way we can mount a volume over /var/madsonic.
