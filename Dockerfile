@@ -1,4 +1,4 @@
-FROM ubuntu:14.10
+FROM ubuntu:15.10
 
 RUN locale-gen en_US en_US.UTF-8
 
