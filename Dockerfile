@@ -23,8 +23,8 @@ RUN apt-get update && apt-get install -y \
 # Madsonic Package Information
 ENV PKG_NAME madsonic
 ENV PKG_VER 6.0
-ENV PKG_BUILD 7760
-ENV PKG_DATE 20151029
+ENV PKG_BUILD 7820
+ENV PKG_DATE 20151216
 
 ENV DEB_NAME ${PKG_DATE}_${PKG_NAME}-${PKG_VER}.${PKG_BUILD}.deb
 
