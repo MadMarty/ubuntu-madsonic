@@ -1,38 +1,52 @@
 Madsonic Ubuntu docker image 
 ============================
 
-Madsonic http://beta.madsonic.org
+**Application**
 
-Latest Beta Release of Madsonic.
+[Madsonic](http://beta.madsonic.org/pages/index.jsp)
 
-**Pull image**
+**Application description**
+
+Madsonic is a web-based media streamer and jukebox Server. 
+Based on Java technology, Madsonic runs on most platforms,
+including Windows, Mac, Linux, OSX, and Unix variants.
+
+**Build notes**
+
+Latest beta release of Madsonic.
+
+**Usage**
 
 ```
-docker pull madsonic/ubuntu-madsonic
-```
-
-**Run container**
-
-```
-docker run -d -p 4040:4040 -p 4050:4050 --name=<container name> -net=host -e SSL="no" -v <path for media files>:/media -v <path for config files>:/config -v /etc/localtime:/etc/localtime:ro madsonic/ubuntu-madsonic
+docker run -d \
+	-p 4040:4040 \
+	-p 4050:4050 \
+	--name=<container name> \
+	-e CONTEXT_PATH=<root path> \
+	-e SSL=<yes|no> \
+	-v <path for media files>:/media \
+	-v <path for config files>:/config \
+	-v /etc/localtime:/etc/localtime:ro \
+	madsonic/ubuntu-madsonic
 ```
 
 Please replace all user variables in the above command defined by <> with the correct values.
 
-
 **Access application**
 
-```
-http://<host ip>:4040
-```
+`http://<host ip>:4040`
 
-or if you have enabled SSL
+**Example**
 
 ```
-https://<host ip>:4050
+docker run -d \
+	-p 4040:4040 \
+	-p 4050:4050 \
+	--name=madsonic \
+	-e CONTEXT_PATH=\ \
+	-e SSL=yes \
+	-v /media/music/:/media \
+	-v /apps/docker/madsonic:/config \
+	-v /etc/localtime:/etc/localtime:ro \
+	madsonic/ubuntu-madsonic
 ```
-
-
-
-
-
