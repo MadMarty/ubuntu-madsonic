@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/bash
 
 /usr/bin/madsonic --home=/config --default-music-folder=/media
 
