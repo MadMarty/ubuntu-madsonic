@@ -34,8 +34,7 @@ RUN dpkg -i ${DEB_NAME}
 # Create hardlinks to the transcoding binaries.
 # This way we can mount a volume over /var/madsonic.
 # <host-dir>/var/madsonic/transcode/ffmpeg -> /usr/local/bin/ffmpeg
-# <host-dir>/var/madsonic/transcode/lame -> /usr/local/bin/lame
-RUN ln /var/madsonic/transcode/ffmpeg /var/madsonic/transcode/lame /usr/local/bin
+RUN ln /var/madsonic/transcode/ffmpeg /usr/local/bin
 
 VOLUME /var/madsonic
 VOLUME /config
