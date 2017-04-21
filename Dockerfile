@@ -1,4 +1,4 @@
-ROM ubuntu:16.04
+FROM ubuntu:16.04
 
 ENV LANG en_US.utf8
 #RUN locale-gen en_US en_US.UTF-8
