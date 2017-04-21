@@ -1,30 +1,26 @@
-FROM ubuntu:15.10
+ROM ubuntu:16.04
 
-RUN locale-gen en_US en_US.UTF-8
+ENV LANG en_US.utf8
+#RUN locale-gen en_US en_US.UTF-8
 
 # update Apt Packages
-RUN apt-get update
-RUN apt-get -qqy --force-yes dist-upgrade
-
-# Add Oracle Java Repo
-RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list.d/webupd8team-java.list \
-  && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 \
-  && echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+#RUN apt-get update && apt-get -qqy --force-yes dist-upgrade
 
 # Install Apt Packages
 RUN apt-get update && apt-get install -y \
   ca-certificates \
   locales \
-  oracle-java8-installer \
-  oracle-java8-set-default \
+  default-jre-headless \
   unzip \
-  wget
+  wget \
+  && rm -rf /var/lib/apt/lists/* \
+  && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 # Madsonic Package Information
 ENV PKG_NAME madsonic
 ENV PKG_VER 6.2
-ENV PKG_BUILD 9040
-ENV PKG_DATE 20161208
+ENV PKG_BUILD 9260
+ENV PKG_DATE 20170215
 
 ENV DEB_NAME ${PKG_DATE}_${PKG_NAME}-${PKG_VER}.${PKG_BUILD}.deb
 
