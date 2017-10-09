@@ -1,24 +1,14 @@
-FROM ubuntu:15.10
-
-RUN locale-gen en_US en_US.UTF-8
-
-# update Apt Packages
-RUN apt-get update
-RUN apt-get -qqy --force-yes dist-upgrade
-
-# Add Oracle Java Repo
-RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list.d/webupd8team-java.list \
-  && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 \
-  && echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+FROM ubuntu:16.04
 
 # Install Apt Packages
 RUN apt-get update && apt-get install -y \
-  ca-certificates \
-  locales \
-  oracle-java8-installer \
-  oracle-java8-set-default \
-  unzip \
-  wget
+    ca-certificates \
+    locales \
+    unzip \
+    wget \
+    default-jre
+
+RUN locale-gen en_US en_US.UTF-8
 
 # Madsonic Package Information
 ENV PKG_NAME madsonic
@@ -35,6 +25,11 @@ RUN dpkg -i ${DEB_NAME}
 # This way we can mount a volume over /var/madsonic.
 # <host-dir>/var/madsonic/transcode/ffmpeg -> /usr/local/bin/ffmpeg
 RUN ln /var/madsonic/transcode/ffmpeg /usr/local/bin
+
+# Clean out the system to shrink the image
+RUN apt-get clean autoclean && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt /var/lib/dpkg /var/lib/cache /var/lib/log
 
 VOLUME /var/madsonic
 VOLUME /config
